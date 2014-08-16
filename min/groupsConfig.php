@@ -12,7 +12,7 @@
  **/
 
 return array(
-	'js' => array(
+	'MyCode.js' => array(
 		"//js/jquery-1.7.2.min.js"
 		,"//js/swfobject.js"
 		,"//js/modernizr.js"
@@ -40,7 +40,7 @@ return array(
 		,"//js/custom-script.js"
 		,"//js/my-custom-script.js"
 	),
-	'css' => array(
+	'MyStyles.css' => array(
 		"//css/bootstrap.css"
 		,"//css/responsive.css"
 		,"//css/camera.css"

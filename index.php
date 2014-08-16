@@ -6,8 +6,8 @@ if($bMinify)
 	$groupsSources = require_once("min/groupsConfig.php");
 	require_once("min/utils.php");
 
-	$jsBuild = new Minify_Build($groupsSources['js']);
-	$cssBuild = new Minify_Build($groupsSources['css']);
+	$jsBuild = new Minify_Build($groupsSources['MyCode.js']);
+	$cssBuild = new Minify_Build($groupsSources['MyStyles.css']);
 }
 ?>
 <!DOCTYPE html>
@@ -94,7 +94,7 @@ if($bMinify)
 </script>
 <?php } ?>
 <?php if($bMinify) { ?>
-<link href="<?= $cssBuild->uri('/min/?g=css'); ?>" rel="stylesheet" type="text/css" />
+<link href="<?= $cssBuild->uri('/m/MyStyles.css'); ?>" rel="stylesheet" type="text/css" />
 <link href="//fonts.googleapis.com/css?family=Open+Sans:400,600,700,400italic&subset=latin,cyrillic" rel="stylesheet" type="text/css" />
 <?php } ?>
 <style type="text/css">body{background-image:url(http://livedemo00.template-help.com/free_2013_wocommerce_2_0_14/wp-content/themes/themeWoo/images/main-bg.jpg);background-repeat:repeat;background-position:top center;background-attachment:scroll;}body{background-color:#F1EEE8}.header{background-color:#ffffff}</style>
@@ -492,6 +492,6 @@ var _wpcf7 = {"loaderUrl":"http:\/\/livedemo00.template-help.com\/free_2013_woco
 </script>
 <?php } ?>
 <?php if($bMinify) { ?>
-<script type="text/javascript" src="<?= $jsBuild->uri('/min/?g=js'); ?>" async></script>
+<script type="text/javascript" src="<?= $jsBuild->uri('/m/MyCode.js'); ?>" async></script>
 <?php } ?>
 </body></html>
