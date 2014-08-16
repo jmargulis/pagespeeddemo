@@ -1,5 +1,7 @@
 <?php
 $bMinify = true;
+$bUseCloudFront = $bMinify && true; // only worth it with minification
+
 if($bMinify)
 {
 	require_once("min/config.php");
@@ -8,6 +10,24 @@ if($bMinify)
 
 	$jsBuild = new Minify_Build($groupsSources['MyCode.js']);
 	$cssBuild = new Minify_Build($groupsSources['MyStyles.css']);
+}
+
+function getCloudFrontDomain()
+{
+	global $bUseCloudFront;
+
+	$strResult = "";
+	if($bUseCloudFront)
+	{
+		// Put your own AWS CloudFront domain here.
+		// This should point at your server, so that when you try to get
+		// assets from this CloudFront domain, it will originally come
+		// from your server, but then be cached throughout the world
+		// for fast delivery wherever your visitors live
+		// $strResult = "http://dXXXXXXXXXXXX99999999.cloudfront.net";
+	}
+	
+	return $strResult;
 }
 ?>
 <!DOCTYPE html>
@@ -94,7 +114,7 @@ if($bMinify)
 </script>
 <?php } ?>
 <?php if($bMinify) { ?>
-<link href="<?= $cssBuild->uri('/m/MyStyles.css'); ?>" rel="stylesheet" type="text/css" />
+<link href="<?= getCloudFrontDomain() . $cssBuild->uri('/m/MyStyles.css'); ?>" rel="stylesheet" type="text/css" />
 <link href="//fonts.googleapis.com/css?family=Open+Sans:400,600,700,400italic&subset=latin,cyrillic" rel="stylesheet" type="text/css" />
 <?php } ?>
 <style type="text/css">body{background-image:url(http://livedemo00.template-help.com/free_2013_wocommerce_2_0_14/wp-content/themes/themeWoo/images/main-bg.jpg);background-repeat:repeat;background-position:top center;background-attachment:scroll;}body{background-color:#F1EEE8}.header{background-color:#ffffff}</style>
@@ -492,6 +512,6 @@ var _wpcf7 = {"loaderUrl":"http:\/\/livedemo00.template-help.com\/free_2013_woco
 </script>
 <?php } ?>
 <?php if($bMinify) { ?>
-<script type="text/javascript" src="<?= $jsBuild->uri('/m/MyCode.js'); ?>" async></script>
+<script type="text/javascript" src="<?= getCloudFrontDomain() . $jsBuild->uri('/m/MyCode.js'); ?>" async></script>
 <?php } ?>
 </body></html>
